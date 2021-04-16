@@ -9,6 +9,7 @@ from .base import SkoBase
 from sko.tools import func_transformer
 from abc import ABCMeta, abstractmethod
 from .operators import crossover, mutation, ranking, selection
+from tqdm import trange
 
 
 class GeneticAlgorithmBase(SkoBase, metaclass=ABCMeta):
@@ -75,7 +76,7 @@ class GeneticAlgorithmBase(SkoBase, metaclass=ABCMeta):
 
     def run(self, max_iter=None):
         self.max_iter = max_iter or self.max_iter
-        for i in range(self.max_iter):
+        for i in trange(self.max_iter, desc="step "):
             self.X = self.chrom2x(self.Chrom)
             self.Y = self.x2y()
             self.ranking()

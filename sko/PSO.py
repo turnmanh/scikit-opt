@@ -6,6 +6,7 @@
 import numpy as np
 from sko.tools import func_transformer
 from .base import SkoBase
+from tqdm import trange
 
 
 class PSO(SkoBase):
@@ -178,7 +179,7 @@ class PSO(SkoBase):
         '''
         self.max_iter = max_iter or self.max_iter
         c = 0
-        for iter_num in range(self.max_iter):
+        for iter_num in trange(self.max_iter, desc="step "):
             self.update_V()
             self.recorder()
             self.update_X()
